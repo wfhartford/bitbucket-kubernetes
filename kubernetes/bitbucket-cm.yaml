@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bitbucket
+  namespace: bitbucket
+data:
+  bitbucket.properties: |
+    jdbc.driver=org.postgresql.Driver
+    jdbc.url=jdbc:postgresql://postgres:5432/postgres
+    jdbc.user=postgres
+    jdbc.password=${POSTGRES_PASSWORD}
+    plugin.search.elasticsearch.baseurl=http://elasticsearch:9200
+    setup.license=${BITBUCKET_LICENSE}
+    setup.sysadmin.username=${BITBUCKET_ADMIN_USER}
+    setup.sysadmin.password=${BITBUCKET_ADMIN_PASSWORD}
+    setup.sysadmin.displayName=${BITBUCKET_ADMIN_USER}
+#    setup.sysadmin.emailAddress=${BITBUCKET_ADMIN_EMAIL}
+

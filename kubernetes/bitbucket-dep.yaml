@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitbucket
+  namespace: bitbucket
+  labels:
+    app: bitbucket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitbucket
+  template:
+    metadata:
+      labels:
+        app: bitbucket
+    spec:
+      serviceAccountName: bitbucket
+      containers:
+        - name: bitbucket
+          image: quay.io/wfhartford/bitbucket:5.15.1
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+            - name: BITBUCKET_LICENSE
+              valueFrom:
+                secretKeyRef:
+                  name: bitbucket-setup
+                  key: bitbucket-license
+                  optional: true
+            - name: BITBUCKET_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: bitbucket-setup
+                  key: bitbucket-admin-user
+                  optional: true
+            - name: BITBUCKET_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bitbucket-setup
+                  key: bitbucket-admin-password
+                  optional: true
+            - name: JVM_SUPPORT_RECOMMENDED_ARGS
+              value: "-Djava.security.egd=file:/dev/./urandom"
+          resources:
+            limits:
+              memory: 3Gi
+              cpu: 3
+            requests:
+              memory: 3Gi
+              cpu: 200m
+          ports:
+            - name: http
+              containerPort: 7990
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 1
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 5
+          volumeMounts:
+            - name: home
+              mountPath: /bitbucket-home
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: home
+          persistentVolumeClaim:
+            claimName: bitbucket
+        - name: config
+          configMap:
+            name: bitbucket

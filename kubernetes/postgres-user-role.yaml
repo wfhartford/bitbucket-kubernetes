@@ -1,0 +1,10 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: postgres-user
+  namespace: bitbucket
+rules:
+  - apiGroups: [""]
+    resources: ["secrets","services"]
+    verbs: ["get"]
+    resourceNames: ["postgres"]
