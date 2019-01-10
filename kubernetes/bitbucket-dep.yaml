@@ -18,7 +18,7 @@ spec:
       serviceAccountName: bitbucket
       containers:
         - name: bitbucket
-          image: quay.io/wfhartford/bitbucket:5.15.1
+          image: quay.io/wfhartford/bitbucket:latest
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:

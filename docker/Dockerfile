@@ -2,6 +2,7 @@ FROM azul/zulu-openjdk-alpine:11.0.1
 
 ARG DOWNLOAD_MIRROR=https://downloads.atlassian.com
 
+ENV JAVA_HOME=/usr/lib/jvm/zulu11.2.3-jdk11.0.1-linux_musl_x64
 ENV BBS_VERSION=5.15.1
 ENV BITBUCKET_HOME=/bitbucket-home
 
