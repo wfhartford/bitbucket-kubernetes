@@ -43,6 +43,12 @@ spec:
                   name: bitbucket-setup
                   key: bitbucket-admin-password
                   optional: true
+            - name: BITBUCKET_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: bitbucket-setup
+                  key: bitbucket-admin-email
+                  optional: true
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
               value: "-Djava.security.egd=file:/dev/./urandom"
           resources:

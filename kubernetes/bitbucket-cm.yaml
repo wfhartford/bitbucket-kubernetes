@@ -10,9 +10,10 @@ data:
     jdbc.user=postgres
     jdbc.password=${POSTGRES_PASSWORD}
     plugin.search.elasticsearch.baseurl=http://elasticsearch:9200
+    setup.displayName=Bitbucket
+    setup.baseUrl=http://bitbucket:7990
     setup.license=${BITBUCKET_LICENSE}
     setup.sysadmin.username=${BITBUCKET_ADMIN_USER}
     setup.sysadmin.password=${BITBUCKET_ADMIN_PASSWORD}
     setup.sysadmin.displayName=${BITBUCKET_ADMIN_USER}
-#    setup.sysadmin.emailAddress=${BITBUCKET_ADMIN_EMAIL}
-
+    setup.sysadmin.emailAddress=${BITBUCKET_ADMIN_EMAIL}

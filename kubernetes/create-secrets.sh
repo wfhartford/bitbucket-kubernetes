@@ -17,14 +17,17 @@ echo "Bitbucket admin user password will be '${ADMIN_PASSWORD}'"
 if [[ -f bitbucket-setup-secret.yaml ]]
 then
   BITBUCKET_LICENSE=$(cat bitbucket-setup-secret.yaml | shyaml get-value 'data.bitbucket-license')
+  ADMIN_EMAIL=$(cat bitbucket-setup-secret.yaml | shyaml get-value 'data.bitbucket-admin-email')
 else
   unset BITBUCKET_LICENSE
+  unset ADMIN_EMAIL
 fi
 
 if [[ -z ${BITBUCKET_LICENSE+x} ]]
 then
-  BITBUCKET_LICENSE="[insert license here]"
-  echo "Remember to add your bitbucket license key into bitbucket-setup-secret.yaml"
+  BITBUCKET_LICENSE="[insert base64 encoded license here]"
+  ADMIN_EMAIL="[insert base64 encoded email here]"
+  echo "Remember to add your bitbucket license key and admin e-mail into bitbucket-setup-secret.yaml"
 fi
 
 cat > bitbucket-setup-secret.yaml << EOF
@@ -40,6 +43,8 @@ type: Opaque
 data:
   # The base64 encoded bitbucket license provided by Atlassian.
   bitbucket-license: ${BITBUCKET_LICENSE}
+  # The base64 encoded administrator e-mail address.
+  bitbucket-admin-email: ${ADMIN_EMAIL}
   # The user name of the admin user created at first startup ("admin").
   bitbucket-admin-user: YWRtaW4=
   # The password of the above named admin user created at first startup.

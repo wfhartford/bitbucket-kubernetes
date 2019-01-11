@@ -3,7 +3,7 @@ FROM azul/zulu-openjdk-alpine:8u192
 ARG DOWNLOAD_MIRROR=https://downloads.atlassian.com
 
 ENV JAVA_HOME=/usr/lib/jvm/zulu8.33.0.1-jdk8.0.192-linux_musl_x64
-ENV BBS_VERSION=5.15.1
+ENV BBS_VERSION=5.16.0
 ENV BITBUCKET_HOME=/bitbucket-home
 
 RUN apk --no-cache add bash git perl tini && \
