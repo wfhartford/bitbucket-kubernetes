@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:11.0.1
+FROM azul/zulu-openjdk-alpine:8u192
 
 ARG DOWNLOAD_MIRROR=https://downloads.atlassian.com
 
