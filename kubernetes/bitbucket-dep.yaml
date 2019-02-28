@@ -51,6 +51,8 @@ spec:
                   optional: true
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
               value: "-Djava.security.egd=file:/dev/./urandom"
+            - name: JVM_MAXIMUM_MEMORY
+              value: "2g"
           resources:
             limits:
               memory: 3Gi
