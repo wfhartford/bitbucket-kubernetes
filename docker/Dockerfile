@@ -1,14 +1,14 @@
 FROM azul/zulu-openjdk-alpine:8u192
 
-ARG DOWNLOAD_MIRROR=https://downloads.atlassian.com
+ARG DOWNLOAD_MIRROR=https://www.atlassian.com
 
-ENV JAVA_HOME=/usr/lib/jvm/zulu8.33.0.1-jdk8.0.192-linux_musl_x64
-ENV BBS_VERSION=5.16.0
+ENV JAVA_HOME=/usr/lib/jvm/zulu-8
+ENV BBS_VERSION=6.0.1
 ENV BITBUCKET_HOME=/bitbucket-home
 
 RUN apk --no-cache add bash git perl tini && \
     mkdir /bitbucket && \
-    wget -q -O - ${DOWNLOAD_MIRROR}/software/stash/downloads/atlassian-bitbucket-${BBS_VERSION}.tar.gz \
+    wget -q -O - ${DOWNLOAD_MIRROR}/software/stash/downloads/binary/atlassian-bitbucket-${BBS_VERSION}.tar.gz \
         | tar -zx --strip-components=1 -C /bitbucket && \
     rm -rf /bitbucket/elasticsearch && \
     mkdir -p /bitbucket-home/shared /config && \
