@@ -2,7 +2,7 @@ FROM azul/zulu-openjdk-alpine:8u192
 
 ARG DOWNLOAD_MIRROR=https://www.atlassian.com
 
-ENV JAVA_HOME=/usr/lib/jvm/zulu-8
+ENV JAVA_HOME=/usr/lib/jvm/zulu8.33.0.1-jdk8.0.192-linux_musl_x64
 ENV BBS_VERSION=6.0.1
 ENV BITBUCKET_HOME=/bitbucket-home
 
