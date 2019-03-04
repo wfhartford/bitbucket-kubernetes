@@ -51,7 +51,7 @@ spec:
             periodSeconds: 5
           volumeMounts:
             - name: data
-              mountPath: /var/lib/postgresql/data/pgdata
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: data
           persistentVolumeClaim:
